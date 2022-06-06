@@ -1,50 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Generic;
+
 namespace yyy
-{public partial class Form1 : Form
+{
+    public partial class Form1 : Form
     {
+
+        int p = 4;
         int Score = 0;
         int ospeed = 0;
         int sec = 0;
-        bool press=false;
+        bool press = false;
         bool win = false;
+        
         Random random = new Random();
+     
+      Stack<PictureBox> obj = new Stack<PictureBox>();
+        
+       
         public Form1()
-        {
+        {         
             InitializeComponent();
             Run();
         }
         private void label1_Click(object sender, EventArgs e)
-        {}
+        { }
         private void GameEvent(object sender, EventArgs e)
         {
+          
             if (press) sec++;
             label1.Text = "Score: " + Score;
-            foreach(Control x in this.Controls)
+            foreach (Control x in this.Controls)
             {
-                if (x is PictureBox && (string)x.Tag == "note")
-                { 
+                if (x is PictureBox && (string)x.Tag == ("note") )
+                {
                     x.Left -= ospeed;
-                    if (x.Left < pictureBox1.Left)
+                    if (x.Left<-500)
                     {
-                        Run();
+                    }                      
+                    if (sec < 3 && press && x.Left < Hitbox.Right && x.Right > Hitbox.Left)
+                    {
+                        win = true;
                     }
-                    if (sec<3&&press&&x.Left<Hitbox.Right)
-                    {
-                        win = true; }
                 }
-              }  
+            }
         }
         private void KeyUP(object sender, KeyEventArgs e)
         {
-            if(press)
+            if (press)
             {
                 press = false;
                 Hitbox.BackColor = Color.BlanchedAlmond;
@@ -52,34 +57,66 @@ namespace yyy
         }
         private void KeyisDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Space && !press)
+            if (e.KeyCode == Keys.Space && !press)
             {
                 press = true;
-                Hitbox.BackColor=Color.Green;
-}
+                Hitbox.BackColor = Color.Green;
+            }
         }
         public void Run()
-        {if (win) { Score++; }
-            
-            win = false;
-            ospeed = 10+Score/(3);
+        {
+            Licz();
+            ospeed = 10 + Score / (3);
             sec = 0;
-            Hitbox.Top = pictureBox1.Top;
-            foreach(Control x in Controls)
+             Hitbox.Top = Kanwa.Top;
+            foreach (Control x in Controls)
             {
                 if (x is PictureBox && (string)x.Tag == "note")
-               {
-                    int pos = random.Next(63, 700);
-                    x.Left = pos + Hitbox.Width;
+                {
+                    
+                    x.Left = 500 ;
                 }
             }
+            obj.Push(pictureBox3);
+            for(int i = 0; i < 20; i++)
+            {
+                Gen(obj);
+            }
             timer1.Start();
+        }
+        public void Licz()
+        {
+            if(win)
+            {
+            
+            }
+            win = false;
+        }
+       
+        public void Gen(Stack <PictureBox> i)
+        {
+            PictureBox p;
+                p = i.Peek();
+            var pic = new PictureBox()
+            {
+                Name = "Tak",
+                Tag = "note",
+                Parent = Kanwa,
+             Size= new Size(80,80),
+                Location = new Point(p.Left + random.Next(100, 300), pictureBox3.Top),
+                Image = pictureBox3.Image,
+                
+            };   
+          Controls.Add(pic);
+            pic.BringToFront();
+            i.Push(pic);
         }
         private void pictureBox2_Click(object sender, EventArgs e)
         {
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+          
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -90,10 +127,8 @@ namespace yyy
         private void note_Click(object sender, EventArgs e)
         {
         }
-        private void pictureBox2_Click_1(object sender, EventArgs e)
-        {
-        }
-        private void pictureBox2_Click_2(object sender, EventArgs e)
+        
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
         }
     }
