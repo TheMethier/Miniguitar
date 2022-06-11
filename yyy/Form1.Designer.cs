@@ -43,6 +43,7 @@
             this.Hitbox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Kanwa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Hitbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -62,7 +63,7 @@
             this.Kanwa.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Kanwa.Location = new System.Drawing.Point(2, 188);
             this.Kanwa.Name = "Kanwa";
-            this.Kanwa.Size = new System.Drawing.Size(1069, 135);
+            this.Kanwa.Size = new System.Drawing.Size(1269, 100);
             this.Kanwa.TabIndex = 0;
             this.Kanwa.TabStop = false;
             this.Kanwa.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -72,7 +73,7 @@
             this.Hitbox.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.Hitbox.Location = new System.Drawing.Point(63, 188);
             this.Hitbox.Name = "Hitbox";
-            this.Hitbox.Size = new System.Drawing.Size(136, 134);
+            this.Hitbox.Size = new System.Drawing.Size(120, 100);
             this.Hitbox.TabIndex = 1;
             this.Hitbox.TabStop = false;
             this.Hitbox.Click += new System.EventHandler(this.pictureBox2_Click);
@@ -97,12 +98,12 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::yyy.Properties.Resources.note;
-            this.pictureBox3.Location = new System.Drawing.Point(377, 202);
+            this.pictureBox3.Location = new System.Drawing.Point(389, 188);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 100);
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Tag = "note";
+            this.pictureBox3.Tag = "note1";
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // pictureBox10
@@ -145,6 +146,7 @@
             this.pictureBox9.TabIndex = 13;
             this.pictureBox9.TabStop = false;
             this.pictureBox9.Tag = "note";
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // pictureBox2
             // 
@@ -178,7 +180,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::yyy.Properties.Resources.note;
-            this.pictureBox8.Location = new System.Drawing.Point(377, 329);
+            this.pictureBox8.Location = new System.Drawing.Point(699, 329);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(100, 100);
             this.pictureBox8.TabIndex = 12;
@@ -195,6 +197,11 @@
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 10000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -253,6 +260,7 @@
         private System.Windows.Forms.PictureBox Hitbox1;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
