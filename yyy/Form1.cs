@@ -18,7 +18,7 @@ namespace yyy
         public Form1()
         {         
             InitializeComponent();
-            Run();
+            Run();//fanskfandfkadnfas
         }
         private void label1_Click(object sender, EventArgs e)
         { 
