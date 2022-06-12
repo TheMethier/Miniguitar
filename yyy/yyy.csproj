@@ -83,5 +83,26 @@
   <ItemGroup>
     <None Include="Resources\note.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plansza2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Rednote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yellow_icon.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orange-circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pan_Blue_Circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\muzyka.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plansza3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

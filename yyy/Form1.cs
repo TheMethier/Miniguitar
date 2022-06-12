@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Media;
 
 namespace yyy
 {
@@ -9,10 +10,8 @@ namespace yyy
     {
         Random random = new Random();
         int Score = 0;
-        int ospeed;
-        int ospeed1;
-        int ospeed2;
-        int ospeed3;
+        int ospeed = 10;
+        
         int sec = 0;
         bool pressq = false;
         bool pressw = false;
@@ -44,25 +43,19 @@ namespace yyy
                 if (x is PictureBox && (string)x.Tag == ("note1") || x is PictureBox && (string)x.Tag == ("note2") || x is PictureBox && (string)x.Tag == ("note3") || x is PictureBox && (string)x.Tag == ("note4"))
                     //gdy znajdzie picturebox o tagu note1 wykonują się instrukcje:
                 {
-                    if((string)x.Tag == ("note1"))
-                        x.Left -= ospeed;
-                    if ((string)x.Tag == ("note2"))// ruch klocków
-                        x.Left -= ospeed1;
-                    if ((string)x.Tag == ("note3"))
-                        x.Left -= ospeed2;
-                    if ((string)x.Tag == ("note4"))
-                        x.Left -= ospeed3;
+                    x.Left -= ospeed;
+                    
                     if (obj.Peek().Left<-130&&obj.Peek().Name=="Tak")
                       //gdy okazuje się że najpóźniej wygenerowany element
                       //(obj.Peek(), który w generacji ma nazwę "Tak) przebije -130:
                                                                     
                     {
-                        Gen(obj, "note1", Kanwa, pictureBox3);//generuje nowy peek
+                        Gen(obj, "note1", Kanwa, pictureBox4);//generuje nowy peek
                         obj.Peek().Left = 800+random.Next(100,300);//nadaje mu pozycję
-                        Gen(obj, "note1", Kanwa, pictureBox3);
+                        Gen(obj, "note1", Kanwa, pictureBox4);
                       for(int i =0;i<9;i++)//generuje 10 następnych elementów
                         {
-                            Gen(obj, "note1", Kanwa, pictureBox3);
+                            Gen(obj, "note1", Kanwa, pictureBox4);
                         }
 
                     }
@@ -83,12 +76,12 @@ namespace yyy
                       
                                                                     
                     {
-                        Gen(obj1, "note2", Kanwa1, pictureBox4);
+                        Gen(obj1, "note2", Kanwa1, pictureBox3);
                         obj1.Peek().Left = 800+random.Next(100,300);
-                        Gen(obj1, "note2", Kanwa1, pictureBox4);
+                        Gen(obj1, "note2", Kanwa1, pictureBox3);
                         for (int i =0;i<9;i++)
                         {
-                            Gen(obj1, "note2", Kanwa1, pictureBox4);
+                            Gen(obj1, "note2", Kanwa1, pictureBox3);
                         }
 
                     }
@@ -109,7 +102,7 @@ namespace yyy
                     //Warunek wygranej gdzie jest sprawdzana poprzez sec długość pressa i
                     //czy klocek znajduje się w danym obszarze    
                     {
-                            if (Score % 10 == 0) { ospeed += random.Next(2, 5); ospeed1 += random.Next(2, 5); ospeed2 += random.Next(2, 5); ospeed3 += random.Next(2, 5); }//Przyspieszanie co 10                     
+                            if (Score % 10 == 0) { ospeed += random.Next(2, 5); }//Przyspieszanie co 10                     
                             Score++;                    
                         }                  
                 }
@@ -165,11 +158,10 @@ namespace yyy
         }
         public void Run()
         {
-
-            ospeed = 10;
-            ospeed1 = random.Next(2,10);
-            ospeed2 = random.Next(2,10);
-            ospeed3 = random.Next(2,10);
+            
+            //playSimpleSound();
+          
+            
             Hitbox.Top = Kanwa.Top;
             Hitbox1.Top = Kanwa1.Top;
             Hitbox2.Top = Kanwa2.Top;
@@ -205,15 +197,21 @@ namespace yyy
                 Name = "Tak",
                 Tag = tag,
                 Parent = locat,
-             Size= new Size(80,80),
-                Location = new Point(p.Left +2*p.Width+ random.Next(200, 550), image.Top),
-                Image = image.Image,
+             Size= new Size(100,100),
+                Location = new Point(p.Left +2*p.Width+ random.Next(200, 550), locat.Top),
+                BackColor = image.BackColor,
                 
             };   //jest stworzony nowy element z danym wyżej konstruktorem
           
           Controls.Add(pic);//dodawanie na scene tego elementu
             pic.BringToFront();//na przód
             i.Push(pic);
+        }
+        private void playSimpleSound()
+        {
+
+            SoundPlayer simpleSound = new SoundPlayer(yyy.Properties.Resources.muzyka);
+            simpleSound.Play();
         }
         //Trzeba jeszcze dodać generacje elementów podobną na innych strunach,
         //stosy przechowujące elementy na danych strunach
@@ -288,6 +286,11 @@ namespace yyy
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_2(object sender, EventArgs e)
         {
 
         }
