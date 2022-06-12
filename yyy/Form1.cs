@@ -28,7 +28,7 @@ namespace yyy
         {
 
         if (pressq) { sec++; }//liczenie czasu nacisku
-            else { sec = 0; }//hgh
+            else { sec = 0; }//hghasfasd
             label1.Text = "Score: " + Score;//wyświetlanie wyniku                
             
             foreach (Control x in this.Controls)
