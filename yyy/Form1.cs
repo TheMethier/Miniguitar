@@ -5,14 +5,11 @@ using System.Collections.Generic;
 using System.Media;
 
 namespace yyy
-{
-    public partial class Form1 : Form
+{  public partial class Form1 : Form
     {
         Random random = new Random();
         int Score = 0;
         int ospeed = 10;
-        
-        int sec = 0;
         bool pressq = false;
         bool pressw = false;
         bool presse = false;
@@ -24,87 +21,77 @@ namespace yyy
         public Form1()
         {         
             InitializeComponent();
-            Run();
+            Run();   
         }
         private void label1_Click(object sender, EventArgs e)
         { 
         }
-
     private void GameEvent(object sender, EventArgs e)
         {
-
-        if (pressq || pressw || presse || pressz) { sec++; }
-            else { sec = 0; }
-            label1.Text = "Score: " + Score;//wyświetlanie wyniku                
-            
+             label1.Text = "Score: " + Score;//wyświetlanie wyniku                
             foreach (Control x in this.Controls)
-                //ta pętla przechodzi po wszystkich elementach formsa
+                //ta pętla przechodzi po wszystkich elementach formy
             {
                 if (x is PictureBox && (string)x.Tag == ("note1") || x is PictureBox && (string)x.Tag == ("note2") || x is PictureBox && (string)x.Tag == ("note3") || x is PictureBox && (string)x.Tag == ("note4"))
-                    //gdy znajdzie picturebox o tagu note1 wykonują się instrukcje:
+                    //gdy znajdzie picturebox o tagu note(liczba) wykonują się instrukcje:
                 {
                     x.Left -= ospeed;
                     
-                    if (obj.Peek().Left<-130&&obj.Peek().Name=="Tak")
+                    if (obj.Peek().Left<-130)
                       //gdy okazuje się że najpóźniej wygenerowany element
-                      //(obj.Peek(), który w generacji ma nazwę "Tak) przebije -130:
+                      // przebije -130
                                                                     
                     {
-                        Gen(obj, "note1", Kanwa, pictureBox4);//generuje nowy peek
-                        obj.Peek().Left = 800+random.Next(100,300);//nadaje mu pozycję
-                        Gen(obj, "note1", Kanwa, pictureBox4);
-                      for(int i =0;i<9;i++)//generuje 10 następnych elementów
+                        Gen(obj, "note1", Kanwa, pictureBox3);//generuje nowy peek
+                        obj.Peek().Left = 800+random.Next(700,900);//nadaje mu pozycję
+                        Gen(obj, "note1", Kanwa, pictureBox3);
+                      for(int i =0;i<5;i++)//generuje 10 następnych elementów
                         {
-                            Gen(obj, "note1", Kanwa, pictureBox4);
+                            Gen(obj, "note1", Kanwa, pictureBox3);
                         }
-
                     }
-                    if (obj2.Peek().Left < -130 && obj2.Peek().Name == "Tak")
-                    
-
+                    if (obj2.Peek().Left < -130)                    
                     {
                         Gen(obj2, "note3", Kanwa2, pictureBox5);
-                        obj2.Peek().Left = 800 + random.Next(100, 300);
+                        obj2.Peek().Left = 800 + random.Next(700, 900);
                         Gen(obj2, "note3", Kanwa2, pictureBox5);
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < 5; i++)
                         {
                             Gen(obj2, "note3", Kanwa2, pictureBox5);
                         }
-
                     }
-                    if(obj1.Peek().Left<-130&&obj1.Peek().Name=="Tak")
-                      
-                                                                    
+                    if(obj1.Peek().Left<-130)                                                
                     {
-                        Gen(obj1, "note2", Kanwa1, pictureBox3);
-                        obj1.Peek().Left = 800+random.Next(100,300);
-                        Gen(obj1, "note2", Kanwa1, pictureBox3);
-                        for (int i =0;i<9;i++)
+                        Gen(obj1, "note2", Kanwa1, pictureBox4);
+                        obj1.Peek().Left = 800+random.Next(700,900);
+                        Gen(obj1, "note2", Kanwa1, pictureBox4);
+                        for (int i =0;i<5;i++)
                         {
-                            Gen(obj1, "note2", Kanwa1, pictureBox3);
+                            Gen(obj1, "note2", Kanwa1, pictureBox4);
                         }
 
                     }
-                    if (obj3.Peek().Left < -130 && obj3.Peek().Name == "Tak")
+                    if (obj3.Peek().Left < -130)
 
 
                     {
                         Gen(obj3, "note4", Kanwa3, pictureBox6);
-                        obj3.Peek().Left = 800 + random.Next(100, 300);
+                        obj3.Peek().Left = 800 + random.Next(700, 900);
                         Gen(obj3, "note4", Kanwa3, pictureBox6);
-                        for (int i = 0; i < 9; i++)
+                        for (int i = 0; i < 5; i++)
                         {
                             Gen(obj3, "note4", Kanwa3, pictureBox6);
                         }
 
                     }
-                    if ( sec<15&&pressq && x.Left < Hitbox.Right && x.Left > Hitbox.Left&&x.Right<Hitbox.Right|| sec < 15 && pressw && x.Left < Hitbox1.Right && x.Left > Hitbox1.Left && x.Right < Hitbox1.Right ||sec<15&&presse && x.Left < Hitbox2.Right && x.Left > Hitbox2.Left&&x.Right<Hitbox2.Right|| sec < 15 && pressz && x.Left < Hitbox3.Right && x.Left > Hitbox3.Left && x.Right < Hitbox3.Right)
-                    //Warunek wygranej gdzie jest sprawdzana poprzez sec długość pressa i
+                    if (x.Visible==true && pressq && x.Left < Hitbox.Right && x.Left > Hitbox.Left && x.Right < Hitbox.Right || x.Visible==true && pressw && x.Left < Hitbox1.Right && x.Left > Hitbox1.Left && x.Right < Hitbox1.Right || x.Visible == true && presse && x.Left < Hitbox2.Right && x.Left > Hitbox2.Left && x.Right < Hitbox2.Right || x.Visible == true && pressz && x.Left < Hitbox3.Right && x.Left > Hitbox3.Left && x.Right < Hitbox3.Right)
+                    //Warunek wygranej gdzie jest sprawdzana, czy klocek jest widoczny i
                     //czy klocek znajduje się w danym obszarze    
                     {
-                            if (Score % 10 == 0) { ospeed += random.Next(2, 5); }//Przyspieszanie co 10                     
-                            Score++;                    
-                        }                  
+                                            
+                        Score++;
+                        x.Visible = false;//ustawia widoczność na false
+                    }
                 }
             }
         }
@@ -112,59 +99,71 @@ namespace yyy
         {
             if (pressq)
             {
-                pressq = false;                                
-                Hitbox.BackColor = Color.BlanchedAlmond;
+                pressq = false;                                                
             }
-            if(pressw)
+            if (pressw)
             {
                 pressw = false;               
-                Hitbox1.BackColor = Color.BlanchedAlmond;
             }
             if (presse)
             {
                 presse = false;
-                Hitbox2.BackColor = Color.BlanchedAlmond;
             }
             if (pressz)
             {
                 pressz = false;
-                Hitbox3.BackColor = Color.BlanchedAlmond;
             }
         }
         private void KeyisDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.D1 && !pressq)
             {
-                pressq = true;               
-                Hitbox.BackColor = Color.Green;
+                pressq = true;              
             }
             if (e.KeyCode == Keys.D2 && !pressw)
             {
                 pressw = true;
-                Hitbox1.BackColor = Color.OrangeRed;
             }
             if (e.KeyCode == Keys.D3 && !presse)
             {
                 presse = true;
-                Hitbox2.BackColor = Color.Yellow;
             }
             if (e.KeyCode == Keys.D4 && !pressz)
             {
                 pressz = true;
-                Hitbox3.BackColor = Color.Blue;
             }
-
-
         }
         public void Run()
         {
-            
+
             //playSimpleSound();
-          
-            
-            Hitbox.Top = Kanwa.Top;
-            Hitbox1.Top = Kanwa1.Top;
+            timer1.Stop();
+            //---------------
+           //Ustawianie sceny
+           //----------------
+            Hitbox.Top = 83;
+            Hitbox.Left= 20;
+            Kanwa.Top=Hitbox.Top;
+            Hitbox.Size = new System.Drawing.Size(120, 100);
+            Hitbox1.Top = 220;
+            Hitbox1.Left = 20;
+            Kanwa1.Top = Hitbox1.Top;
+            Kanwa1.Top = 220;
+            pictureBox4.Top = Kanwa1.Top;
+            Hitbox1.Size = new System.Drawing.Size(120, 100);
+            Hitbox1.Top = Kanwa1.Top; Hitbox2.Top = 220;
+            Hitbox2.Left = 20;
+            Kanwa2.Top = Hitbox2.Top;
+            Kanwa2.Top = 340;
+            pictureBox5.Top = Kanwa2.Top;
+            Hitbox2.Size = new System.Drawing.Size(120, 100);
             Hitbox2.Top = Kanwa2.Top;
+            Hitbox3.Left = 20;
+            Kanwa3.Top = Hitbox3.Top;
+            Kanwa3.Top = 460;
+            pictureBox6.Top = Kanwa3.Top;
+            Hitbox3.Size = new System.Drawing.Size(120, 100);
+            Hitbox3.Top = Kanwa3.Top;
             Hitbox3.Top = Kanwa3.Top;
             foreach (Control x in Controls)//pętla ustawia pierwszy klocek na stałej pozycji
             {
@@ -198,7 +197,7 @@ namespace yyy
                 Tag = tag,
                 Parent = locat,
              Size= new Size(100,100),
-                Location = new Point(p.Left +2*p.Width+ random.Next(200, 550), locat.Top),
+                Location = new Point(p.Left +2*p.Width+ random.Next(300, 900), locat.Top),
                 BackColor = image.BackColor,
                 
             };   //jest stworzony nowy element z danym wyżej konstruktorem
@@ -213,11 +212,7 @@ namespace yyy
             SoundPlayer simpleSound = new SoundPlayer(yyy.Properties.Resources.muzyka);
             simpleSound.Play();
         }
-        //Trzeba jeszcze dodać generacje elementów podobną na innych strunach,
-        //stosy przechowujące elementy na danych strunach
-        //w Run() nadanie pozycji pierwszemu elementowi
-        //obsługę innych przycisków w keydown/keyup 
-        //w GameEvent() zmiennione z tagiem(np. note2) warunki wygranej i generacje na żywo
+        
         private void pictureBox2_Click(object sender, EventArgs e)
         {
         }
@@ -291,6 +286,38 @@ namespace yyy
         }
 
         private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+       
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Start_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void Mouse(object sender, MouseEventArgs e)
+        {
+
+        }
+
+     
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
