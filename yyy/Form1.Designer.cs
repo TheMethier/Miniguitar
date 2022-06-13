@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -79,11 +78,6 @@
             this.timer1.Interval = 20;
             this.timer1.Tick += new System.EventHandler(this.GameEvent);
             // 
-            // timer2
-            // 
-            this.timer2.Interval = 10000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -116,7 +110,7 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 12;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Tag = "note2";
+            this.pictureBox3.Tag = "note1";
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox8_Click);
             // 
             // Hitbox3
@@ -156,7 +150,7 @@
             this.pictureBox4.Size = new System.Drawing.Size(120, 120);
             this.pictureBox4.TabIndex = 5;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Tag = "note1";
+            this.pictureBox4.Tag = "note2";
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // Hitbox
@@ -255,10 +249,10 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.Kanwa);
             this.Controls.Add(this.Kanwa1);
             this.Controls.Add(this.Kanwa2);
             this.Controls.Add(this.Kanwa3);
+            this.Controls.Add(this.Kanwa);
             this.Controls.Add(this.Hitbox);
             this.Controls.Add(this.Hitbox1);
             this.Controls.Add(this.Hitbox2);
@@ -304,7 +298,6 @@
         private System.Windows.Forms.PictureBox Hitbox1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox Kanwa1;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
