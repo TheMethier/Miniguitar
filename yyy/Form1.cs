@@ -63,11 +63,20 @@ namespace yyy
                 if (x is PictureBox && (string)x.Tag == ("note1") || x is PictureBox && (string)x.Tag == ("note2") || x is PictureBox && (string)x.Tag == ("note3") || x is PictureBox && (string)x.Tag == ("note4"))
                     //gdy znajdzie picturebox o tagu note(liczba) wykonują się instrukcje:
                 {
+                    
                     x.Left -= ospeed;
+                 
                     if (obj.Peek().Left<-130)
                       //gdy okazuje się że najpóźniej wygenerowany element
                       // przebije -130                                           
                     {
+                        for (int i = 0; i < obj.Count+5; i++)
+                        {
+
+                            obj.Pop();
+
+                            obj.Peek().Dispose();
+                        }
                         Gen(obj, "note1", Kanwa, pictureBox3);//generuje nowy peek
                         obj.Peek().Left = 800+random.Next(700,900);//nadaje mu pozycję
                         Gen(obj, "note1", Kanwa, pictureBox3);
@@ -76,8 +85,15 @@ namespace yyy
                             Gen(obj, "note1", Kanwa, pictureBox3);
                         }
                     }
-                    if (obj2.Peek().Left < -130)                    
+                    if (obj2.Peek().Left < -130)
                     {
+                        for (int i = 0; i < obj2.Count+5; i++)
+                        {
+
+                            obj2.Pop();
+
+                            obj2.Peek().Dispose();
+                        }
                         Gen(obj2, "note3", Kanwa2, pictureBox5);
                         obj2.Peek().Left = 800 + random.Next(700, 900);
                         Gen(obj2, "note3", Kanwa2, pictureBox5);
@@ -86,8 +102,15 @@ namespace yyy
                             Gen(obj2, "note3", Kanwa2, pictureBox5);
                         }
                     }
-                    if(obj1.Peek().Left<-130)                                                
+                    if(obj1.Peek().Left<-130)
                     {
+                        for (int i = 0; i < obj1.Count+5; i++)
+                        {
+
+                            obj1.Pop();
+
+                            obj1.Peek().Dispose();
+}
                         Gen(obj1, "note2", Kanwa1, pictureBox4);
                         obj1.Peek().Left = 800+random.Next(700,900);
                         Gen(obj1, "note2", Kanwa1, pictureBox4);
@@ -98,6 +121,11 @@ namespace yyy
                     }
                     if (obj3.Peek().Left < -130)
                     {
+              for (int i = 0; i < obj3.Count+5; i++)
+                        {
+                            obj3.Peek().Dispose();
+                            obj3.Pop();
+                        }
                         Gen(obj3, "note4", Kanwa3, pictureBox6);
                         obj3.Peek().Left = 800 + random.Next(700, 900);
                         Gen(obj3, "note4", Kanwa3, pictureBox6);
@@ -105,13 +133,14 @@ namespace yyy
                         {
                             Gen(obj3, "note4", Kanwa3, pictureBox6);
                         }
-                    }
+                    }                   
                     if ((string)x.Tag=="note1"&&secq<50&&x.Visible==true && pressq && x.Left < Hitbox.Right && x.Left > Hitbox.Left && x.Right < Hitbox.Right || (string)x.Tag == "note2" && secw <50&& x.Visible==true && pressw && x.Left < Hitbox1.Right && x.Left > Hitbox1.Left && x.Right < Hitbox1.Right || (string)x.Tag == "note3" && sece <50&&x.Visible == true && presse && x.Left < Hitbox2.Right && x.Left > Hitbox2.Left && x.Right < Hitbox2.Right || (string)x.Tag == "note4" && secz <50&&x.Visible == true && pressz && x.Left < Hitbox3.Right && x.Left > Hitbox3.Left && x.Right < Hitbox3.Right)
                     //Warunek wygranej gdzie jest sprawdzana, czy klocek jest widoczny i
                     //czy klocek znajduje się w danym obszarze    
                     {                                    
                        Score++;
                         x.Visible = false;//ustawia widoczność na false
+                      
                     }
                 }
             }
@@ -157,7 +186,7 @@ namespace yyy
         public void Run()
         {
             //Rickrolled\\
-          //playSimpleSound();
+          playSimpleSound();
             timer1.Stop();
             //---------------\\
             //Ustawianie sceny\\
@@ -197,7 +226,7 @@ namespace yyy
             obj1.Push(pictureBox4);
             obj2.Push(pictureBox5);
             obj3.Push(pictureBox6);//element jest pushowany na stos
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Gen(obj, "note1", Kanwa, pictureBox3);//generacja
                 Gen(obj1, "note2", Kanwa1, pictureBox4);
@@ -207,7 +236,7 @@ namespace yyy
             timer1.Start();//rozpoczęcie trwania timera
         }
         public void Gen(Stack <PictureBox> i, string tag, PictureBox locat, PictureBox image) 
-        {            
+        {               
             PictureBox p;
                 p = i.Peek();
             var pic = new PictureBox()
@@ -216,7 +245,7 @@ namespace yyy
                 Tag = tag,
                 Parent = locat,
              Size= new Size(100,100),
-                Location = new Point(p.Left +2*p.Width+ random.Next(300, 900), locat.Top),
+                Location = new Point(p.Left +2*p.Width+ random.Next(400, 900), locat.Top),
                 BackColor = image.BackColor,
                 
             };   //jest stworzony nowy element z danym wyżej konstruktorem 
@@ -242,7 +271,7 @@ namespace yyy
         }
         private void keyp(object sender, KeyPressEventArgs e)
         {
-        }
+        }  
         private void note_Click(object sender, EventArgs e)
         {
         }
@@ -251,68 +280,51 @@ namespace yyy
         }
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-
         }
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
-
         }
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-
         }
         private void pictureBox6_Click_1(object sender, EventArgs e)
         {
-
         }
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-
         }
         private void pictureBox8_Click(object sender, EventArgs e)
         {
-
         }
         private void pictureBox10_Click(object sender, EventArgs e)
         {
-
         }
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-
         }
-   
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-
         }
         private void pictureBox1_Click_2(object sender, EventArgs e)
         {
-
         }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
         private void Start_Click(object sender, EventArgs e)
-        {
-          
+        { 
         }
         private void Mouse(object sender, MouseEventArgs e)
         {
-
         }     
         private void label3_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
